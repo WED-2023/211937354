@@ -184,7 +184,259 @@ body {
 
 
 
+/* לייק */
+.like-section {
+	background-color: #fffaf0;
+	padding: 60px 100px;
+	direction: rtl;
+	text-align: center;
+  }
+  
+  .like-section h2 {
+	font-size: 26px;
+	color: #d6844a;
+	margin-bottom: 10px;
+  }
+  
+  .like-section p {
+	font-size: 18px;
+	color: #555;
+	margin-bottom: 20px;
+  }
+  
+  #like-button {
+	padding: 12px 24px;
+	font-size: 18px;
+	background-color: #f8d9b6;
+	border: none;
+	border-radius: 12px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	font-family: 'Quicksand', sans-serif;
+  }
+  
+  #like-button:hover {
+	background-color: #ffdab9;
+  }
+  
+  #emoji-container {
+	position: relative;
+	height: 60px;
+	overflow: visible;
+	margin-top: 20px;
+  }
+  
+  .flying-emoji {
+	position: absolute;
+	bottom: 0;
+	font-size: 24px;
+	animation: flyUp 2s ease-out forwards;
+  }
+  
+  @keyframes flyUp {
+	0% {
+	  opacity: 1;
+	  transform: translateY(0) scale(1);
+	}
+	50% {
+	  transform: translateY(-40px) scale(1.2);
+	}
+	100% {
+	  opacity: 0;
+	  transform: translateY(-100px) scale(0.8);
+	}
+  }
+  
+  /* סקר */
+  .poll {
+	background-color: #fef7e5;
+	padding: 60px 100px;
+	direction: rtl;
+	text-align: right;
+	font-family: 'Quicksand', sans-serif;
+  }
+  
+  .poll h2 {
+	font-size: 26px;
+	color: #d6844a;
+	margin-bottom: 20px;
+  }
+  
+  .poll-options {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+  }
+  
+  .poll-option {
+	background-color: #fff;
+	padding: 10px 20px;
+	border-radius: 16px;
+	font-size: 16px;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	height: 45px;
+  }
+  
+  .poll-option .progress {
+	background-color: #eee;
+	border-radius: 16px;
+	height: 100%;
+	flex-grow: 1;
+	margin-right: 15px;
+	margin-left: 15px;
+	position: relative;
+	overflow: hidden;
+  }
+  
+  .poll-option .bar {
+	background-color: #4a4a4a;
+	height: 100%;
+	width: 0%;
+	transition: width 0.5s ease;
+	border-radius: 16px;
+  }
+  
+  .poll-option .percent {
+	position: absolute;
+	top: 50%;
+	left: 10px;
+	transform: translateY(-50%);
+	font-weight: bold;
+	color: #fff;
+	z-index: 2;
+  }
 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .contact {
+	background-color: #fff9ef;
+	padding: 60px 100px;
+	text-align: center;
+	direction: rtl;
+	font-family: 'Quicksand', sans-serif;
+  }
+  
+  .contact h2 {
+	font-size: 26px;
+	color: #d6844a;
+	margin-bottom: 10px;
+  }
+  
+  .contact-options {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 60px;
+	margin-top: 30px;
+	flex-wrap: wrap;
+  }
+  
+  .mail-icon {
+	font-size: 48px;
+	text-decoration: none;
+	transition: transform 0.3s ease;
+  }
+  
+  .mail-icon:hover {
+	transform: scale(1.2);
+  }
+  
+  .contact-form {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	width: 300px;
+	position: relative;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+	padding: 10px;
+	border-radius: 12px;
+	border: 1px solid #ddd;
+	font-size: 16px;
+	font-family: 'Quicksand', sans-serif;
+  }
+  
+  .contact-form button {
+	background-color: #f8d9b6;
+	border: none;
+	padding: 10px;
+	border-radius: 12px;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 18px;
+  }
+  
+  .contact-form button:hover {
+	background-color: #ffdab9;
+  }
+  
+  .required {
+	color: red;
+  }
+  
+  .message-area {
+	position: relative;
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+  }
+  
+  .emoji-toggle {
+	background: transparent;
+	border: none;
+	font-size: 24px;
+	cursor: pointer;
+  }
+  
+  .emoji-popup {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	background: #ffffff;
+	border: 1px solid #ccc;
+	border-radius: 12px;
+	padding: 10px;
+	display: none;
+	z-index: 100;
+	flex-wrap: wrap;
+	gap: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .emoji-popup span {
+	font-size: 22px;
+	cursor: pointer;
+	transition: transform 0.2s ease;
+  }
+  
+  .emoji-popup span:hover {
+	transform: scale(1.3);
+  }
+  
+  
+  
+  
 
 
 

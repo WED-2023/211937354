@@ -124,35 +124,87 @@
 </div>
 </section>
 
-<section id="like" class="section4">
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-give me a like
-<br/>
-<br/>
-<br/>
+<section id="like-section" class="like-section">
+  <h2>אהבתם את האתר שלי? 💛</h2>
+  <p>תנו לייק קטן לדודה לוסי – כי גם למרמלדה מגיע חיבוק!</p>
+  <button id="like-button">❤️ אהבתי</button>
+  <div id="emoji-container"></div>
 </section>
+
+<section id="poll" class="poll">
+  <h2>מה תרצו לראות בפוסט הבא?</h2>
+  <div class="poll-options">
+    <div class="poll-option" data-value="מרמלדה"><span>🍊 עוד מתכונים של מרמלדה</span><div class="progress"><div class="bar"></div><div class="percent">0%</div></div></div>
+    <div class="poll-option" data-value="לונדון"><span>🇬🇧 סיפור הנסיעה ללונדון</span><div class="progress"><div class="bar"></div><div class="percent">0%</div></div></div>
+    <div class="poll-option" data-value="פדינגטון"><span>🧸 תמונות חדשות עם פדינגטון</span><div class="progress"><div class="bar"></div><div class="percent">0%</div></div></div>
+    <div class="poll-option" data-value="טיפים"><span>💌 טיפים לאדיבות וכתיבת מכתבים</span><div class="progress"><div class="bar"></div><div class="percent">0%</div></div></div>
+  </div>
+</section>
+
+
+<!-- שימי את זה בסוף ה-HTML שלך לפני </body> -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // לייקים
+    const likeBtn = document.getElementById('like-button');
+    const emojiContainer = document.getElementById('emoji-container');
+    const emojis = ['🧸','🍊','❤️','💌','😊','🌼'];
+
+    likeBtn.addEventListener('click', () => {
+      const emoji = document.createElement('span');
+      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.className = 'flying-emoji';
+      emoji.style.left = `${Math.random() * 80 + 10}%`;
+      emojiContainer.appendChild(emoji);
+
+      setTimeout(() => {
+        emoji.remove();
+      }, 2000);
+    });
+
+    // סקר
+  const options = document.querySelectorAll(".poll-option");
+  const votes = {
+    מרמלדה: 0,
+    לונדון: 0,
+    פדינגטון: 0,
+    טיפים: 0
+  };
+
+  options.forEach(option => {
+    option.addEventListener("click", () => {
+      const value = option.dataset.value;
+      votes[value]++;
+
+      updatePoll();
+      options.forEach(opt => opt.style.pointerEvents = "none"); // מנע לחיצות
+    });
+  });
+
+  function updatePoll() {
+    const total = Object.values(votes).reduce((a, b) => a + b, 0);
+
+    options.forEach(option => {
+      const value = option.dataset.value;
+      const percent = total > 0 ? Math.round((votes[value] / total) * 100) : 0;
+
+      const bar = option.querySelector(".bar");
+      const percentText = option.querySelector(".percent");
+
+      bar.style.width = `${percent}%`;
+      percentText.textContent = `${percent}%`;
+    });
+  }
+});
+</script>
+
 
 
 
 <section id="qrcoder" class="qr section">
 <h2">"כמו ריבת מרמלדה – האתר הזה טוב יותר כשחולקים אותו."</h2>
   <p>פדינגטון תמיד אומר שדברים טובים נועדו לעבור הלאה. 
-    סרקו, שתפו, ותהיו ותיהיו חלק מהמשפחה שלנו 🍊
+    סרקו, שתפו, ותיהיו חלק מהמשפחה שלנו 🍊
   </p>
   <img src="aunt lucy/QR.png" alt="QR קוד של דודה לוסי" class="qr-image">
 </section>
@@ -180,31 +232,82 @@ ans
 <br/>
 </section>
 
-<section id="contact" class="section7">
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-contact me
-<br/>
-<br/>
-<br/>
+<section id="contact" class="contact">
+  <h2>רוצים לשלוח לי הודעה?</h2>
+  <p>אפשר לשלוח מייל כמו פעם עם מעטפה 📩, או פשוט למלא את הטופס:</p>
+
+  <div class="contact-options">
+    <!-- כפתור פתיחת מייל -->
+    <a href="https://mail.google.com/mail/?view=cm&to=auntlucy@example.com" target="_blank" class="mail-icon" title="שלחו מייל דרך Gmail!">
+      📧
+    </a>
+
+    <!-- טופס יצירת קשר -->
+    <form class="contact-form" onsubmit="return validateForm();">
+      <label for="name">שם מלא <span class="required">*</span></label>
+      <input type="text" id="name" placeholder="השם שלך" required />
+
+      <label for="email">דרך ליצירת קשר חזרה (אופציונלי)</label>
+      <input type="text" id="email" placeholder="אימייל או טלפון (אם תרצו שאחזור)" />
+
+      <label for="message">הודעה <span class="required">*</span></label>
+      <div class="message-area">
+        <textarea id="message" placeholder="מה תרצו לספר לי?" required></textarea>
+        <button type="button" class="emoji-toggle" onclick="toggleEmojiPopup()">😊</button>
+
+        <!-- פופאפ אימוג'ים -->
+        <div id="emoji-popup" class="emoji-popup">
+          <span onclick="insertEmoji('😊')">😊</span>
+          <span onclick="insertEmoji('🥰')">🥰</span>
+          <span onclick="insertEmoji('🐻')">🐻</span>
+          <span onclick="insertEmoji('🍊')">🍊</span>
+          <span onclick="insertEmoji('💌')">💌</span>
+          <span onclick="insertEmoji('🌼')">🌼</span>
+          <span onclick="insertEmoji('🤗')">🤗</span>
+        </div>
+      </div>
+
+      <button type="submit">שלח</button>
+    </form>
+  </div>
 </section>
 
+<script>
+  function toggleEmojiPopup() {
+    const popup = document.getElementById("emoji-popup");
+    if (popup.style.display === "none" || popup.style.display === "") {
+      popup.style.display = "flex";
+    } else {
+      popup.style.display = "none";
+    }
+  }
 
-<script type="text/javascript">
+  function insertEmoji(emoji) {
+    const textarea = document.getElementById("message");
+    textarea.value += emoji;
+    document.getElementById("emoji-popup").style.display = "none";
+  }
+
+  function validateForm() {
+    const name = document.getElementById("name").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    if (!name || !message) {
+      alert("שימו לב! שדות עם * הם חובה. אנא מלאו את השם וההודעה.");
+      return false;
+    }
+
+    alert("ההודעה נשלחה בהצלחה לדודה לוסי! 💌");
+    document.querySelector('.contact-form').reset();
+    return false; // מונע ריפרוש
+  }
+</script>
+
+
+
+
+
+<!-- <script type="text/javascript">
 $(function(){
   $("#nav a").click(function(e){
     e.preventDefault();
@@ -217,5 +320,5 @@ $(function(){
     $('#menu').toggle($(this).scrollTop()>1000)
  });​
  </script>
-</body>
+</body> -->
 </html>
